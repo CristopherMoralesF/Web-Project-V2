@@ -29,14 +29,16 @@ function ConsultarMensajesPorHiloController($IDHilo)
         echo "</tr>";
     }
 }
-if(isset($_POST['btnMensaje']))
+
+if(isset($_POST['btnGuardarComentario']))
 {    
     $Mensaje = $_POST["TxtMensaje"];
     $IdUsuario = $_POST["TxtIDuser"];
     $IdHilo = $_POST["TxtIDFeed"];
     CrearMensajeModel($Mensaje, $IdUsuario, $IdHilo);
-    header("Location: ../View/hilos.php");
+    header('Location: '.$_SERVER['REQUEST_URI']);
+
 }
 
 
-?>
+?>s

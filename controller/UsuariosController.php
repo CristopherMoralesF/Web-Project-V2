@@ -51,6 +51,7 @@ function CargarRolesUsuarioController($rolActual)
     }
 }
 
+//Function to eliminate the user
 if(isset($_POST['funcionEliminarUsuario']))
 {
     session_start();
@@ -58,18 +59,37 @@ if(isset($_POST['funcionEliminarUsuario']))
     eliminarUsuario($cedula);
 }
 
-if(isset($_POST['btnActualizarUsuario']))
-{
-    $cedula = $_POST["txtIdentificacion"];
-    $password = $_POST["txtPassword"];
-    $nombre = $_POST["txtNombre"];
-    $correo = $_POST["txtCorreo"];
-    $rol = $_POST["txtRol"];
+//Function to update user information
+if(isset($_POST['functionActualizarUsuario'])) {
 
-    ActualizarUsuarioModel($cedula, $password, $nombre, $correo, $rol);
-    Header("Location: ../View/usuarios.php");
+    session_start();
+    $idUsuario = ""; 
+
+    //Validate from where the change is comming
+    if(isset($_POST['idUsuario'])){
+        $idUsuario = $_POST['idUsuario'];
+    } else {
+        
+        $idUsuario = $_SESSION["IDuser"]; 
+    }
+
+
+    //Create all the variables
+    $nombreUsuario = $_POST["userName"];
+    $password = $_POST["userPassword"];
+    $role = $_POST["userRole"];
+    $estado = $_POST["userStatus"];
+    $passwordRequerido = $_POST["passwordRequired"];
+
+    ActualizarUsuarioModel($idUsuario,$nombreUsuario,$password,$role,$estado,$passwordRequerido);
+
+    //Change the session variables with the new values. 
+    $_SESSION["NombreUsuario"] = $nombreUsuario;
+    $_SESSION["RolUsuario"] = $role;
+
 }
 
+//Option to create a new user
 if(isset($_POST['btnRegistrarUsuario']))
 {
     $cedula = $_POST["txtIdentificacion"];

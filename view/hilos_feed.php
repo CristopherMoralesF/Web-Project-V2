@@ -7,13 +7,12 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Start Bootstrap Template</title>
+    <title>Chat</title>
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/simple-sidebar.css" rel="stylesheet">
     <link href="../css/hilos_feed.css" rel="stylesheet">
@@ -23,12 +22,10 @@
 </head>
 
 <body>
-
     <div class="d-flex" id="wrapper">
         <?php $FeedID = $_GET['FeedID'];?>
         <?php MostrarMenu();?>
         <?php MostrarNav();?>
-        <?php session_start();?>
         <?php
         $UserID = $_SESSION["IDuser"];
         ?>

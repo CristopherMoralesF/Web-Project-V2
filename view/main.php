@@ -1,6 +1,6 @@
 <?php 
-  include 'componentes.php';
-  include '../controller/MensajesController.php';
+  include_once 'componentes.php';
+  include_once '../controller/MensajesController.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,10 +28,10 @@
         <?php MostrarMenu();?>
         <?php MostrarNav();?>
         <?php
-        session_start();
         $NombreUsuario = $_SESSION["NombreUsuario"];
         $RolUsuario = $_SESSION["RolUsuario"];
         $FechaC = $_SESSION["FechaCreacion"];
+        $statusUsuario = $_SESSION["EstadoUsuario"];
         $ConteoMensajes = TraerCantMensajesController($_SESSION["IDuser"]);
         ?>
         <div class="container-fluid">
@@ -90,7 +90,7 @@
                                         <tr>
                                             <td><i class="fa fa-user fa-2x" style="display: inline;"></i></td>
                                             <td style="padding-left: 10px">
-                                                <p class="card-text">Se ha asignado un role de <?php  {echo $RolUsuario;}?></p>
+                                                <p class="card-text">El usuario esta <br> <?php  {echo $statusUsuario ;}?></p>
                                             </td>
                                         </tr>
                                     </table>

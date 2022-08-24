@@ -39,11 +39,11 @@
 
         <?php
             //Bring use information to the screen
-            session_start();
             $NombreUsuario = $_SESSION["NombreUsuario"];
             $RolUsuario = $_SESSION["RolUsuario"];
             $FechaC = $_SESSION["FechaCreacion"];
             $ConteoMensajes = TraerCantMensajesController($_SESSION["IDuser"]);
+            $Estadousuario = $_SESSION["EstadoUsuario"];
         ?>
 
         <div class="container-fluid">
@@ -64,8 +64,8 @@
                         </picture>
 
                         <p style='padding: 25px'>
-                            Nombre de Usuario: <br><br>
-                            Tipo de Accesso: <br>
+                            <b>Nombre de Usuario:</b><br><?php {echo $NombreUsuario;} ?><br><br>
+                            <b>Tipo de Accesso:</b><br><?php  {echo $RolUsuario;}?><br>
                         </p>
 
                         <a href="../view/main.php" class="btn btn-secondary">Perfil</a>
@@ -81,30 +81,39 @@
                         <form action="">
                             <div class="form-group">
                                 <label for="nombreUsuario">Nombre Usuario</label>
-                                <input type="text" class="form-control" id="nombreUsuario"
-                                    aria-describedby="nombreUsuario" placeholder= "<?php echo $NombreUsuario?>">
+                                <input type="text" class="form-control" id="nombreUsuario" name="nombreUsuario"
+                                    aria-describedby="nombreUsuario" value="<?php echo $NombreUsuario?>" requried>
                             </div>
 
                             <div class="form-group">
                                 <label for="nombreUsuario">Rol Usuario</label>
-                                <input type="email" class="form-control" id="nombreUsuario"
-                                    aria-describedby="nombreUsuario" placeholder="<?php echo $RolUsuario?>" readonly>
+                                <input type="email" class="form-control" id="roleUsuario" name="roleUsuario"
+                                    aria-describedby="nombreUsuario" value="<?php echo $RolUsuario?>" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="estadoUsuario">Estado Usuario</label>
+                                <input type="email" class="form-control" id="estadoUsuario" name="estadoUsuario"
+                                    aria-describedby="estadoUsuario" value="<?php echo $Estadousuario?>" readonly>
                             </div>
 
                             <div class="form-group">
                                 <label for="passwordUsuario">Contraseña</label>
-                                <input type="password" class="form-control" id="nombreUsuario"
+                                <input type="password" class="form-control" id="passwordUsuario" name="passwordUsuario"
                                     aria-describedby="nombreUsuario" placeholder="Introduzca su contraseña">
                             </div>
 
                             <div class="form-group">
                                 <label for="passwordUsuario">Confirme su contraseña</label>
-                                <input type="password" class="form-control" id="nombreUsuario"
-                                    aria-describedby="nombreUsuario" placeholder="Introduzca su contraseña nuevamente">
+                                <input type="password" class="form-control" id="passwordConfirmation"
+                                    name="passwordConfirmation" aria-describedby="nombreUsuario"
+                                    placeholder="Introduzca su contraseña nuevamente">
                             </div>
 
-                            <button type="button" class="btn btn-outline-info btnSize">Guardar Cambios</button>
-                            <button type="button" class="btn btn-outline-info btnSize" onclick = "deleteUserConfirmation()">Eliminar Cuenta</button>
+                            <button type="button" class="btn btn-outline-info btnSize"
+                                onclick=actualizarUsuario()>Guardar Cambios</button>
+                            <button type="button" class="btn btn-outline-info btnSize"
+                                onclick="deleteUserConfirmation()">Eliminar Cuenta</button>
 
                         </form>
 

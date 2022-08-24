@@ -25,7 +25,6 @@
 
         <?php MostrarMenu();?>
         <?php MostrarNav();?>
-        <?php session_start();?>
         <?php
         $IDuser = $_SESSION["IDuser"]
         ?>

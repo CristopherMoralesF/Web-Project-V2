@@ -21,6 +21,13 @@ include_once 'ComponentesController.php';
             $_SESSION["FechaCreacion"] = $item["CDATE"];
             $_SESSION["IDuser"] = $item["ID_USUARIO"];
 
+            //Validate the status of the user and save it in the session variable
+            if($item["ESTADO"] == 1) {
+                $_SESSION["EstadoUsuario"] = 'Activo';
+            } else {
+                $_SESSION["EstadoUsuario"] = 'Inactivo';
+            }
+            
             Header("Location: ../view/main.php");
         }       
     }

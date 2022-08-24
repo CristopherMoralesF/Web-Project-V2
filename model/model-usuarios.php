@@ -38,5 +38,13 @@
         CerrarDB($instancia);
         
     }
+
+    function ActualizarUsuarioModel($idUsuario,$nombreUsuario,$password,$role,$estado,$passwordRequerido){
+        
+        $instancia = AbrirDB(); 
+        $eliminarUsuario = $instancia -> query("CALL ACTUALIZAR_USUARIO($idUsuario,'$nombreUsuario','$password','$role',$estado,$passwordRequerido); ");
+        CerrarDB($instancia);
+        
+    }
     
 ?>

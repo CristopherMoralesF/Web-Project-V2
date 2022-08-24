@@ -2,15 +2,25 @@
 
     function MostrarMenu(){
 
+    session_start(); 
+    $RolUsuario = $_SESSION["RolUsuario"];
+
     echo '
         <div class="bg-secondary border-right" id="sidebar-wrapper">
             <div class="sidebar-heading text-white">Virtual Chat </div>
                 <div class="list-group list-group-flush">
                     <a href="main.php" class="list-group-item list-group-item-action bg-secondary text-light">Usuario</a>
                     <a href="hilos.php" class="list-group-item list-group-item-action bg-secondary text-light">Hilos</a>
-                    <a href="misMensajes.php" class="list-group-item list-group-item-action bg-secondary text-light">Mis Mensajes</a>
-                    <a href="#" class="list-group-item list-group-item-action bg-secondary text-light">About</a>
-                </div>
+                    <a href="misMensajes.php" class="list-group-item list-group-item-action bg-secondary text-light">Mis Mensajes</a>';
+    
+    if($RolUsuario == 'Admin') {
+      echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">Actualizar Usuarios</a>';
+      echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';    
+    }
+    
+    
+    echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">About</a>';
+    echo '</div>
         </div>
     ';
 
