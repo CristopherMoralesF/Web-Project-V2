@@ -19,10 +19,49 @@ function ConsultarMensajesController($IDusuario)
     $listaMensajes = ConsultarMensajesModel($IDusuario);
     while ($item = mysqli_fetch_array($listaMensajes)) 
     {
-        echo "<tr>";
-        echo '<td style = "width: 300px"><div class="alert alert-primary" style = "width: 300px" role="alert">' . $item["NOMBRE_HILO"]."</div> </td>";
-        echo '<td style = "width: 300px"><div class="alert alert-info" role="alert">' . $item["MENSAJE"]."</div> </td>";
-        echo "</tr>";
+
+        echo '<div class="card" style = "margin: 25px">
+                <div class="card-header bg-dark text-white">
+                    <a class="btn btn-info" style = "margin-right: 10px" onclick = "deleteMessage('. $item["ID_COMENTARIO"] . ')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <div class="alert alert-info" role="alert" style = "display: inline; margin-right: 10px;">
+                        '. $item["NOMBRE_HILO"]. '
+                    </div> 
+                </div>
+                <div class="card-body">
+                    <p class="card-text">'. $item["MENSAJE"]. '</p>
+                    <div class="d-flex justify-content-center">
+                    
+                    </div>
+                </div>
+            </div>';
+
+    }
+}
+
+function ConsultarTotalMensajesController($IDusuario)
+{ 
+    $listaMensajes = ConsultarTotalMensajesModel($IDusuario);
+    while ($item = mysqli_fetch_array($listaMensajes)) 
+    {
+
+        echo '<div class="card" style = "margin: 25px">
+                <div class="card-header bg-dark text-white">
+                    <a class="btn btn-info" style = "margin-right: 10px" onclick = "deleteMessage('. $item["ID_COMENTARIO"] . ')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <div class="alert alert-info" role="alert" style = "display: inline; margin-right: 10px;">
+                        '. $item["NOMBRE_USUARIO"]. '
+                    </div>
+                    <div class="alert alert-info" role="alert" style = "display: inline; margin-right: 10px;">
+                        '. $item["NOMBRE_HILO"]. '
+                    </div> 
+                </div>
+                <div class="card-body">
+                    <p class="card-text">'. $item["MENSAJE"]. '</p>
+                    <div class="d-flex justify-content-center">
+                    
+                    </div>
+                </div>
+            </div>';
+
     }
 }
 
@@ -49,5 +88,12 @@ if(isset($_GET['ResumenMensajes'])){
 
 }
 
+//Delete the message from the user list. 
+if(isset($_POST['functionEliminarMensaje'])){
+
+    $idComentario = $_POST['idComentario'];
+    eliminarMensajeModel($idComentario);
+
+}
 
 ?>

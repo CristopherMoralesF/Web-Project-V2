@@ -17,6 +17,7 @@
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/simple-sidebar.css" rel="stylesheet">
 
+
 </head>
 
 <style>
@@ -113,7 +114,7 @@
                             <button type="button" class="btn btn-outline-info btnSize"
                                 onclick=actualizarUsuario()>Guardar Cambios</button>
                             <button type="button" class="btn btn-outline-info btnSize"
-                                onclick="deleteUserConfirmation()">Eliminar Cuenta</button>
+                                onclick="deleteUser()">Eliminar Cuenta</button>
 
                         </form>
 

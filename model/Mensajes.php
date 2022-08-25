@@ -19,6 +19,15 @@
     
     }
 
+    function ConsultarTotalMensajesModel(){
+
+        $instancia = AbrirDB(); 
+        $listaMensajes = $instancia -> query("CALL VER_MENSAJES_VALIDACION ();");
+        CerrarDB($instancia);
+
+        return $listaMensajes; 
+    }
+
     function ResumenMensajesModel($IDusuario){
     
         $instancia = AbrirDB();
@@ -26,6 +35,14 @@
         CerrarDB($instancia);  
     
         return $Mensajes;
+
+    }
+
+    function eliminarMensajeModel($idMensaje) {
+
+        $instancia = AbrirDB(); 
+        $eliminarMensaje = $instancia -> query("CALL ELIMINAR_MENSAJE($idMensaje);");
+        CerrarDB($instancia);
 
     }
     

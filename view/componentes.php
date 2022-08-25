@@ -14,8 +14,8 @@
                     <a href="misMensajes.php" class="list-group-item list-group-item-action bg-secondary text-light">Mis Mensajes</a>';
     
     if($RolUsuario == 'Admin') {
-      echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">Actualizar Usuarios</a>';
-      echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';    
+      echo '<a href="usuarios_actualizar.php" class="list-group-item list-group-item-action bg-secondary text-light">Actualizar Usuarios</a>';
+      echo '<a href="mensajes_validacion.php" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';    
     }
     
     

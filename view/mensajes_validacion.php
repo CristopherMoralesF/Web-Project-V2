@@ -38,10 +38,23 @@
         
         <div class="container-fluid">
 
-            <h2 class="text-secondary" style="padding: 15px"> Mis Mensajes </h2>
+            <h2 class="text-secondary" style="padding: 15px; display: inline;"> 
+                Mis Mensajes 
+                <a class="btn btn-secondary" style = "margin: 15px;" onclick = "activateDeactivateFilter()"><i class="fa fa-filter text-white" aria-hidden="true"></i></a>
+            </h2>
+            
+            <div class="container" id = "filter" name = "filter" style = "display:none;">
+                <select name="txtUser" id="txtUser" class = "form-control">
+
+                </select> 
+                <br>
+                <select name="txtHilo" id="txtHilo" class = "form-control">
+                    
+                </select> 
+            </div>
 
             <?php
-                    ConsultarMensajesController($IDuser);
+                    ConsultarTotalMensajesController($IDuser);
             ?>
             
         </div>

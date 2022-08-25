@@ -4,17 +4,33 @@ include_once '../model/model-usuarios.php';
         
 function ConsultarUsuariosController()
 { 
-    $listaUsuarios = ConsultarUsuariosModel();
-    while ($item = mysqli_fetch_array($listaUsuarios)) 
-    {
-        echo "<tr>";
-        echo "<td>" . $item["Cedula"] . "</td>";
-        echo "<td>" . $item["Nombre"] . "</td>";
-        echo "<td>" . $item["Correo"] . "</td>";
-        echo "<td>" . $item["NombreRol"] . "</td>";
-        echo '<td><a class="btn" href="../View/ActualizarUsuarios.php?q=' . $item["Cedula"] .'">Actualizar</a> | ';
-        echo '    <input type="button" onclick="Eliminar(' . $item["Cedula"] . ');" value="Eliminar" class="btn"></td>';
-        echo "</tr>";
+
+
+    $listaUsuarios = consultarUsuarios();
+    $estado = ""; 
+    $idUsuario = $_SESSION["IDuser"];
+
+    while ($item = mysqli_fetch_array($listaUsuarios)) {
+
+        //Show up only other users. 
+        if($idUsuario != $item['ID_USUARIO']){
+
+            if($item["ESTADO"] == 1) {
+                $estado = "Activo";
+            } else {
+                $estado = "Inactivo";
+            }
+
+            echo "<tr>";
+            echo "<td>" . $item["ID_USUARIO"] . "</td>";
+            echo "<td>" . $item["NOMBRE_USUARIO"] . "</td>";
+            echo "<td>" . $item["TIPO_ROLE"] . "</td>";
+            echo "<td>" . $estado . "</td>";
+            echo '<td><button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter" onclick = "changeValues(this)">Actualizar</button>';
+            echo '<input type="button" style = "margin-left: 15px;" class = "btn btn-info" onclick="deleteUserAdmin(' . $item["ID_USUARIO"] . ');" value="Eliminar" class="btn"></td>';
+            echo "</tr>";
+
+        }
     }
 }
 
@@ -31,32 +47,23 @@ function ConsultarRolesController()
     $listaRoles = ConsultarRolesModel();
     while ($item = mysqli_fetch_array($listaRoles)) 
     {
-        echo "<option value=" . $item["IdRol"] . ">" . $item["NombreRol"] . "</option>";
-    }
-}
-
-function CargarRolesUsuarioController($rolActual)
-{ 
-    $listaRoles = ConsultarRolesModel();
-    while ($item = mysqli_fetch_array($listaRoles)) 
-    {
-        if($rolActual == $item["IdRol"])
-        {
-            echo "<option selected value=" . $item["IdRol"] . ">" . $item["NombreRol"] . "</option>";
-        }
-        else
-        {
-            echo "<option value=" . $item["IdRol"] . ">" . $item["NombreRol"] . "</option>";
-        }
+        echo "<option value=" . $item["ID_ROLE"] . ">" . $item["TIPO_ROLE"] . "</option>";
     }
 }
 
 //Function to eliminate the user
-if(isset($_POST['funcionEliminarUsuario']))
-{
-    session_start();
-    $cedula = $_SESSION["IDuser"];
-    eliminarUsuario($cedula);
+if(isset($_POST['funcionEliminarUsuario'])) {
+
+    $idUsuario = ""; 
+
+    if(isset($_POST['idUsuario'])){
+        $idUsuario = $_POST['idUsuario'];    
+    } else {
+        session_start();
+        $idUsuario = $_SESSION["IDuser"];
+    }
+
+    eliminarUsuario($idUsuario);
 }
 
 //Function to update user information
@@ -83,9 +90,11 @@ if(isset($_POST['functionActualizarUsuario'])) {
 
     ActualizarUsuarioModel($idUsuario,$nombreUsuario,$password,$role,$estado,$passwordRequerido);
 
-    //Change the session variables with the new values. 
-    $_SESSION["NombreUsuario"] = $nombreUsuario;
-    $_SESSION["RolUsuario"] = $role;
+    if(isset($_POST['changeUserSessionInfo'])){
+        //Change the session variables with the new values. 
+        $_SESSION["NombreUsuario"] = $nombreUsuario;
+        $_SESSION["RolUsuario"] = $role;
+    }
 
 }
 

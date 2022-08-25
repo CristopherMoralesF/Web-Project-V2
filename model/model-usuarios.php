@@ -46,5 +46,25 @@
         CerrarDB($instancia);
         
     }
+
+    function consultarUsuarios(){
+
+        $instancia = AbrirDB(); 
+        $listaUsuarios = $instancia -> query("CALL VER_USUARIOS();");
+        CerrarDB($instancia);
+
+        return $listaUsuarios; 
+
+    }
+
+    function ConsultarRolesModel(){
+
+        $instancia = AbrirDB(); 
+        $listaRoles = $instancia -> query("CALL CONSULTAR_ROLES();");
+        CerrarDB($instancia);
+
+        return $listaRoles; 
+
+    }
     
 ?>
