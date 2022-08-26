@@ -28,6 +28,7 @@
         <?php MostrarNav();?>
         <?php
         $UserID = $_SESSION["IDuser"];
+        $UserRole = $_SESSION["EstadoUsuario"];
         ?>
         <div class="container-fluid">
 
@@ -40,7 +41,7 @@
 
                             <div class="d-flex flex-row justify-content-between align-items-center p-2 bg-white border">
 
-                                <div class="feed-text px-2">
+                                <div class="feed-text px-2" id = "formActive">
                                     <form action="" method="POST">
 
                                         <div class="row">
@@ -51,19 +52,42 @@
                                                     value=<?php {echo $UserID;}?>>
                                                 <input type="hidden" name="TxtIDFeed" id="TxtIDuser" cols="80" rows="3"
                                                     value=<?php {echo $FeedID;}?>>
+                                                <input type="hidden" name="TxtUserRole" id="TxtUserRole" cols="80"
+                                                    rows="3" value=<?php {echo $UserRole;}?>>
                                             </div>
                                             <div class="col-2">
 
                                                 <button class='btn btn-primary' id='btnGuardarComentario'
-                                                    name='btnGuardarComentario' style = "margin-top: 25px;"><i
+                                                    name='btnGuardarComentario' style="margin-top: 25px;"><i
                                                         class="fa fa-space-shuttle text-white-50"></i></button>
-
                                             </div>
                                         </div>
                                     </form>
+
                                 </div>
 
+                                <div class="feed-text px-2" id ="formInactive">
 
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <textarea name="TxtMensaje" id="TxtMensaje" cols="80" rows="3"
+                                                    placeholder='Ooop! Tu usuario esta bloqueado, no puedes comentar' class='form-control' readOnly></textarea>
+                                                <input type="hidden" name="TxtIDuser" id="TxtIDuser" cols="80" rows="3"
+                                                    value=<?php {echo $UserID;}?>>
+                                                <input type="hidden" name="TxtIDFeed" id="TxtIDuser" cols="80" rows="3"
+                                                    value=<?php {echo $FeedID;}?>>
+                                                <input type="hidden" name="TxtUserRole" id="TxtUserRole" cols="80"
+                                                    rows="3" value=<?php {echo $UserRole;}?>>
+                                            </div>
+                                            <div class="col-2">
+
+                                                <button class='btn btn-danger' id='btnBloqueado' name='btnBloqueado'
+                                                    style="margin-top: 25px;"><i class="fa fa-times text-white-50"
+                                                        onclick="errroMessageStatus();"></i></button>
+                                            </div>
+                                        </div>
+                           
+                                </div>
 
                             </div>
                             <table id="tMensajes" class="table">
@@ -86,6 +110,10 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../js/simple-sidebar.js"></script>
+    <script src="../vendor/sweetAlert/sweetAlert.js"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="../js/hilos.js"></script>
+
 
 </body>
 

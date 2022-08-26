@@ -38,10 +38,10 @@
 
     }
 
-    function eliminarMensajeModel($idMensaje) {
+    function eliminarMensajeModel($executor, $idMensaje) {
 
         $instancia = AbrirDB(); 
-        $eliminarMensaje = $instancia -> query("CALL ELIMINAR_MENSAJE($idMensaje);");
+        $eliminarMensaje = $instancia -> query("CALL ELIMINAR_MENSAJE('$executor',$idMensaje);");
         CerrarDB($instancia);
 
     }

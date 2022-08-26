@@ -15,11 +15,15 @@
     
     if($RolUsuario == 'Admin') {
       echo '<a href="usuarios_actualizar.php" class="list-group-item list-group-item-action bg-secondary text-light">Actualizar Usuarios</a>';
-      echo '<a href="mensajes_validacion.php" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';    
+      echo '<a href="mensajes_validacion.php" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';
+      echo '<a href="view_logs.php" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Logs</a>';    
+    }
+
+    if($RolUsuario == 'Moderador') {
+      echo '<a href="mensajes_validacion.php" class="list-group-item list-group-item-action bg-secondary text-light">Revisar Mensajes</a>';  
     }
     
-    
-    echo '<a href="#" class="list-group-item list-group-item-action bg-secondary text-light">About</a>';
+
     echo '</div>
         </div>
     ';
@@ -30,6 +34,7 @@
 <?php
 
     function MostrarNav(){
+
         echo '
         <div id="page-content-wrapper">
     

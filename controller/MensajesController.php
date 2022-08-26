@@ -91,8 +91,11 @@ if(isset($_GET['ResumenMensajes'])){
 //Delete the message from the user list. 
 if(isset($_POST['functionEliminarMensaje'])){
 
+    session_start(); 
+    $executor = $_SESSION["NombreUsuario"];  
+
     $idComentario = $_POST['idComentario'];
-    eliminarMensajeModel($idComentario);
+    eliminarMensajeModel($executor,$idComentario);
 
 }
 

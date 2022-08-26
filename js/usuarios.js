@@ -115,14 +115,7 @@ function actualizarUsuario() {
     //needs to match
     if(userPassword != passwordConfirmation) {
 
-      Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Your password is not matching with the confirmation!'
-      })
-
-      return
-
+      
     }
 
     if (userName == "" || userName == null || userRole == "" || userRole == null || userStatus == "" || userStatus == null){

@@ -1,6 +1,6 @@
 <?php 
   include 'componentes.php';
-  include '../controller/MensajesController.php';
+  include '../controller/logsController.php';
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +16,9 @@
     <title>Start Bootstrap Template</title>
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/simple-sidebar.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 
 </head>
 
-<style>
-    td {
-        justify-content: center;  
-    }
-</style>
 <body>
 
     <div class="d-flex" id="wrapper">
@@ -35,29 +28,37 @@
         <?php
         $IDuser = $_SESSION["IDuser"]
         ?>
-        
+
+
+
+        <h2 class="text-secondary" style="padding: 15px"> Administración de usuarios </h2>
+
         <div class="container-fluid">
 
-            <h2 class="text-secondary" style="padding: 15px"> 
-                Revisar Mensajes
-            </h2>
-
-            <?php
-                    ConsultarTotalMensajesController($IDuser);
-            ?>
-            
+            <table id="tUsuarios" class="table">
+                <thead class="text-center bg-dark text-white">
+                    <th>Usuario</th>
+                    <th>Descripción</th>
+                    <th>Typo</th>
+                    <th>Fecha</th>
+                </thead>
+                <tbody>
+                    <?php
+                    cargarLogsController($IDuser);
+                    ?>
+                </tbody>
+            </table>
         </div>
 
     </div>
 
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    
+    <script src="../js/simple-sidebar.js"></script>
     <script src="../vendor/sweetAlert/sweetAlert.js"></script>
     <script src="sweetalert2.all.min.js"></script>
-
-    <script src="../js/simple-sidebar.js"></script>
-    <script src="../js/mensajes.js"></script>
+    <script src="../js/usuarios.js"></script>
+    
 
 
 </body>

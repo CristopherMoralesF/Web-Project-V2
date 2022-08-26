@@ -41,7 +41,11 @@ if(isset($_POST['btnGuardarComentario']))
     $Mensaje = $_POST["TxtMensaje"];
     $IdUsuario = $_POST["TxtIDuser"];
     $IdHilo = $_POST["TxtIDFeed"];
-    CrearMensajeModel($Mensaje, $IdUsuario, $IdHilo);
+    
+    session_start(); 
+    $executor = $_SESSION["NombreUsuario"]; 
+
+    CrearMensajeModel($executor,$Mensaje, $IdUsuario, $IdHilo);
     header('Location: '.$_SERVER['REQUEST_URI']);
 
 }

@@ -29,7 +29,7 @@
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Sign In</h3>
+                        <h3>Sign Up</h3>
                         <div class="d-flex justify-content-end social_icon">
                             <span><i class="fa fa-ravelry"></i></span>
                             <span><i class="fa fa-superpowers"></i></span>
@@ -37,29 +37,36 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="" method="POST">
+                        <form action="">
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-user fa-2x"></i></span>
                                 </div>
                                 <input type="text" class="form-control" placeholder="username" id="txtUsername" name="txtUsername">
-
                             </div>
+
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fa fa-key fa-2x"></i></span>
                                 </div>
                                 <input type="password" class="form-control" placeholder="password" id="txtPassword" name="txtPassword">
                             </div>
-                            <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-right login_btn" id="btnLogin" name="btnLogin">
+
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fa fa-key fa-2x"></i></span>
+                                </div>
+                                <input type="password" class="form-control" placeholder="password confirmation" id="txtPasswordConfirmation" name="txtPasswordConfirmation">
                             </div>
+                        
                         </form>
-                    </div>
-                    <div class="card-footer">
-                        <div class="d-flex justify-content-center links">
-                            Don't have an account?<a href="../view/crearUsuario.php">Sign Up</a>
-                        </div>
+
+                        <div class="form-group">
+                                <input type="submit" value="Create" class="btn login_btn" id="btnCrear" name="btnCrear" onclick = "crearUsuario();">
+                            </div>
+                            
+                        <p id = "errorMessage" class = "text-danger"></p>
+
                     </div>
                 </div>
             </div>
@@ -69,7 +76,7 @@
         <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="../vendor/sweetAlert/sweetAlert.js"></script>
         <script src="sweetalert2.all.min.js"></script>
-        <script src="../js/simple-sidebar.js"></script>
+        <script src="../js/createUser.js"></script>
 
     </form>
 </body>

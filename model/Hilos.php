@@ -10,10 +10,10 @@
         return $Mensajes;
     }
     
-    function CrearMensajeModel($Mensaje, $IdUsuario, $IdHilo){
+    function CrearMensajeModel($executor, $Mensaje, $IdUsuario, $IdHilo){
 
         $instancia = AbrirDB();
-        $Mensajes = $instancia -> query("CALL CREAR_MENSAJE('$IdUsuario', '$IdHilo', '$Mensaje')");
+        $Mensajes = $instancia -> query("CALL CREAR_MENSAJE('$executor',$IdUsuario, $IdHilo, '$Mensaje')");
         CerrarDB($instancia);  
     }
 

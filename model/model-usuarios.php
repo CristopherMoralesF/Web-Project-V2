@@ -13,6 +13,14 @@
     
     }
 
+    function crearUsuario($Username, $password){
+
+        $instancia = AbrirDB();
+        $usuario = $instancia -> query("CALL CREAR_USUARIO ('$Username','$password');");
+        CerrarDB($instancia); 
+    
+    }
+
     function consultarUsurios(){
 
         try {
@@ -31,18 +39,18 @@
 
     }
 
-    function eliminarUsuario($idUsuario){
+    function eliminarUsuario($executor, $idUsuario){
 
         $instancia = AbrirDB(); 
-        $eliminarUsuario = $instancia -> query("CALL ELIMINAR_USUARIO($idUsuario);");
+        $eliminarUsuario = $instancia -> query("CALL ELIMINAR_USUARIO('$executor',$idUsuario);");
         CerrarDB($instancia);
         
     }
 
-    function ActualizarUsuarioModel($idUsuario,$nombreUsuario,$password,$role,$estado,$passwordRequerido){
+    function ActualizarUsuarioModel($executor,$idUsuario,$nombreUsuario,$password,$role,$estado,$passwordRequerido){
         
         $instancia = AbrirDB(); 
-        $eliminarUsuario = $instancia -> query("CALL ACTUALIZAR_USUARIO($idUsuario,'$nombreUsuario','$password','$role',$estado,$passwordRequerido); ");
+        $eliminarUsuario = $instancia -> query("CALL ACTUALIZAR_USUARIO('$executor',$idUsuario,'$nombreUsuario','$password','$role',$estado,$passwordRequerido); ");
         CerrarDB($instancia);
         
     }

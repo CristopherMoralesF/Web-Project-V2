@@ -92,7 +92,7 @@
                                 <label for="estadoUsuario">Rol Usuario</label>
                                 <select name="estadoUsuario" id="estadoUsuario" class="form-control">
                                     <option value="0">Activo</option>
-                                    <option value="1">Innactivo</option>
+                                    <option value="1">Inactivo</option>
                                 </select>
                             </div>
 
